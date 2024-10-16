@@ -105,6 +105,35 @@ public class Lab2_VendingMachine {
         return action.equals("yes");
     }
 
+    public static boolean canStillShop(int balance, int[] PRICES, Scanner sc){
+        //This method checks whether the user can still buy any of the products with their remaining balance
+        if (balance == 0){ //checks if user has run out of money
+            System.out.println("You have no remaining balance. Ending purchase.");
+            //breaks out of the main loop
+            return false;
+        }
+        else{ //checks if user has enough money to buy any more products
+            boolean canStillBuy = false;
+
+                /* loops checks all prices and if the balance is greater than or equal to
+                   any of the items then the user can still buy more */
+            for (int price: PRICES){
+                if (balance >= price){
+                    canStillBuy = true;
+                    break;
+                }
+            }
+
+            if (!canStillBuy){
+                System.out.println("You don't have sufficient funds to buy any more items. Ending purchase.");
+                return false; //breaks out off main loop
+            }
+            else{ //asks user if they still want to buy more if they have any more money
+                return willStillShop(sc);
+            }
+        }
+    }
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
@@ -123,31 +152,7 @@ public class Lab2_VendingMachine {
             //if user has enough money, the item's price will be deducted
             balance = canBuy(PRICES, balance, input, sc);
 
-            if (balance == 0){ //checks if user has run out of money
-                System.out.println("You have no remaining balance. Ending purchase.");
-                //breaks out of the main loop
-                shopping = false;
-            }
-            else{ //checks if user has enough money to buy any more products
-                boolean canStillBuy = false;
-
-                /* loops checks all prices and if the balance is greater than or equal to
-                   any of the items then the user can still buy more */
-                for (int price: PRICES){
-                    if (balance >= price){
-                        canStillBuy = true;
-                        break;
-                    }
-                }
-
-                if (!canStillBuy){
-                    System.out.println("You don't have sufficient funds to buy any more items. Ending purchase.");
-                    shopping = false; //breaks out off main loop
-                }
-                else{ //asks user if they still want to buy more if they have any more money
-                    shopping = willStillShop(sc);
-                }
-            }
+            shopping = canStillShop(balance, PRICES, sc);
 
         }
         System.out.println("\nThank you for using the vending machine!");
