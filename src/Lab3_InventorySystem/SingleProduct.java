@@ -2,14 +2,15 @@ package Lab3_InventorySystem;
 
 public class SingleProduct {
 
+    //PROPERTY
     String brand;
 
+    //BEHAVIORS
     SingleProduct(String brand){
-        System.out.println("Single product has been created!");
         this.brand = brand;
     }
 
-    public String getBrand(){
+    String getBrand(){
         return this.brand;
     }
 

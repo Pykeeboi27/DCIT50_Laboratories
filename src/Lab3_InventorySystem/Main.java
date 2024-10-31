@@ -18,7 +18,7 @@ public class Main {
 
         while (!isValid) {
             System.out.print("Choice: ");
-            String input = sc.next();
+            String input = sc.nextLine();
             if (input.matches("\\d+")) {
                 option = Integer.parseInt(input);
 
@@ -36,15 +36,7 @@ public class Main {
         return option;
     }
 
-    static void inventoryReport(){
-        System.out.println("\n-Inventory Report-\n");
-    }
-    public static void main(String[] args){
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("== INVENTORY SYSTEM ==");
-
+    static void inventoryProgram(Scanner sc, InventoryManager inventory){
         boolean isRunning = true;
 
         while (isRunning){
@@ -53,34 +45,68 @@ public class Main {
             int option = getOption(sc);
             if (option == 1){
                 System.out.print("Brand: ");
-                String brand = sc.next();
+                String brand = sc.nextLine();
 
                 System.out.print("Quantity: ");
                 int quantity = sc.nextInt();
+                sc.nextLine();
 
-                SingleProduct singleProduct = new SingleProduct(brand);
+                SingleProduct prod = new SingleProduct(brand);
+                if(quantity > 1) {
+                    inventory.add(prod,quantity);
+                }
+                else{
+                    inventory.add(prod);
+                }
             }
 
-            if (option == 2){
+            else if (option == 2){
                 System.out.print("Brand: ");
-                String brand = sc.next();
+                String brand = sc.nextLine();
 
                 System.out.print("Items in box: ");
                 int items = sc.nextInt();
 
                 System.out.print("Quantity: ");
                 int quantity = sc.nextInt();
+                sc.nextLine();
 
-                BoxedProduct boxedProduct = new BoxedProduct(brand, items);
+                BoxedProduct prod = new BoxedProduct(brand, items);
+                if(quantity > 1) {
+                    inventory.add(prod,quantity);
+                }
+                else{
+                    inventory.add(prod);
+                }
             }
-
 
             else if (option == 3){
                 isRunning = false;
-                inventoryReport();
+                inventoryReport(inventory);
             }
 
         }
+    }
+
+    static void inventoryReport(InventoryManager inv){
+        System.out.println("\n-Inventory Report-");
+        for (String brand: inv.brands){
+            if (brand == null){
+                break;
+            }
+
+            System.out.println("\n" +brand);
+        }
+
+    }
+    public static void main(String[] args){
+
+        Scanner sc = new Scanner(System.in);
+        InventoryManager inventory = new InventoryManager();
+
+        System.out.println("== INVENTORY SYSTEM ==");
+        inventoryProgram(sc, inventory);
+
 
     }
 

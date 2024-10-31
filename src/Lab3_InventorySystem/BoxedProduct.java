@@ -2,14 +2,14 @@ package Lab3_InventorySystem;
 
 public class BoxedProduct {
 
+    //PROPERTIES
     String brand;
     int quantity;
 
+    //BEHAVIORS
     BoxedProduct(String brand, int quantity){
         this.brand = brand;
         this.quantity = quantity;
-
-        System.out.println("Boxed Product has been added!");
     }
 
     String getBrand(){
