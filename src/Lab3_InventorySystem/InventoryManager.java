@@ -8,38 +8,53 @@ public class InventoryManager {
     String[] brands = new String[100]; //Stores all brands inputted by the user
     int brandsCounter = 0; //assignment of a brand to an index (increases in the methods)
 
-    BoxedProduct[] boxes = new BoxedProduct[500]; //Stores all boxed products created by the user;
+    BoxedProduct[] boxes = new BoxedProduct[1000]; //Stores all boxed products created by the user;
     int boxesCounter = 0; //assignment of a BoxedProduct object to an index (increases in the methods)
 
-    SingleProduct[] singles = new SingleProduct[500]; //Stores all single products created by the user;
+    SingleProduct[] singles = new SingleProduct[1000]; //Stores all single products created by the user;
     int singlesCounter = 0; //assignment of a SingleProduct object to an index (increases in the methods)
 
 
     //BEHAVIORS
-    void brandAdd(SingleProduct p){
+    boolean isArrayFull(Object[] array) {
+        //Checks if an array is full
+        for (Object element : array) {
+            if (element == null) { // Checking for unassigned (null) elements
+                return false;
+            }
+        }
+        return true; // All elements are assigned
+    }
+
+    private void brandAdd(SingleProduct p){
         //adding brand if still not in list - for Single Products
         boolean isExistingBrand = false;
 
-        for (String brand: brands){
-            //If any of the strings in the "brands" array equals to the SingleProduct's brand then it exits out of the loop and the function does nothing
-            if (p.getBrand().equalsIgnoreCase(brand)){
-                isExistingBrand = true;
-                break;
+        if (!isArrayFull(brands)) {
+            for (String brand : brands) {
+                //If any of the strings in the "brands" array equals to the SingleProduct's brand then it exits out of the loop and the function does nothing
+                if (p.getBrand().equalsIgnoreCase(brand)) {
+                    isExistingBrand = true;
+                    break;
+                }
+                //Breaks out of the loop it reaches the null values of the array
+                else if (brand == null) {
+                    break;
+                }
             }
-            //Breaks out of the loop it reaches the null values of the array
-            else if(brand == null){
-                break;
+
+            //If any of the strings in the "brands" array doesn't equal to the SingleProduct's brand then it adds it to the array.
+            if (!isExistingBrand) {
+                brands[brandsCounter] = p.getBrand();
+                brandsCounter++;
             }
         }
-
-        //If any of the strings in the "brands" array doesn't equal to the SingleProduct's brand then it adds it to the array.
-        if (!isExistingBrand){
-            brands[brandsCounter] = p.getBrand();
-            brandsCounter ++;
+        else{
+            System.out.println("Unable to add anymore brands. Inventory system can only have 100 brands.");
         }
     }
 
-    void brandAdd(BoxedProduct p){
+    private void brandAdd(BoxedProduct p){
         //adding brand if still not in list - for Boxed Products
         boolean isExistingBrand = false;
 

@@ -80,13 +80,17 @@ public class Main {
             }
         }
 
-        //Initialization of single product and adding it to the inventory
-        SingleProduct prod = new SingleProduct(brand);
-        if(quantity > 1) {
-            inventory.add(prod,quantity);
+        //Instantiation of single product and adding it to the inventory
+        if (!inventory.isArrayFull(inventory.singles)){ //Adds item if the inventory has space
+            SingleProduct prod = new SingleProduct(brand);
+            if (quantity > 1) {
+                inventory.add(prod, quantity);
+            } else {
+                inventory.add(prod);
+            }
         }
-        else{
-            inventory.add(prod);
+        else{ //Outputs if the inventory has no more space
+            System.out.println("Unable to add more single products as the system can only hold 1000 single items.");
         }
     }
 
@@ -113,57 +117,61 @@ public class Main {
 
         isValid = false; // resets it to false so we only use one boolean for all loops
 
-        // Getting the number of items in the box
-        // Loop is for error handling
+        //Getting the number of items in the box
+        //Loop is for error handling
         while (!isValid) {
             System.out.print("Items in box: ");
             String input1 = sc.nextLine();
 
-            // Converts the input to an integer if it matches an integer value
+            //Converts the input to an integer if it matches an integer value
             if (input1.matches("\\d+")) {
                 items = Integer.parseInt(input1);
 
-                if (items <= 0) { // Outputs if items are less than or equal to 0
+                if (items <= 0) { //Outputs if items are less than or equal to 0
                     System.out.println("Must be at least 1 item in the box. Try Again.");
                 } else { // Items are valid
                     isValid = true;
                 }
-            } else { // Outputs if the user's input doesn't match an integer value
+            } else { //Outputs if the user's input doesn't match an integer value
                 System.out.println("Invalid input. Try again.");
             }
         }
 
-        isValid = false; // resets it to false so we only use one boolean for all loops
+        isValid = false; //resets it to false so we only use one boolean for all loops
 
-        // Getting the amount of boxes to add
-        // Loop is for error handling
+        //Getting the amount of boxes to add
+        //Loop is for error handling
         while (!isValid) {
             System.out.print("Quantity: ");
             String input2 = sc.nextLine();
 
-            // Converts the input to an integer if it matches an integer value
+            //Converts the input to an integer if it matches an integer value
             if (input2.matches("\\d+")){
                 quantity = Integer.parseInt(input2);
 
-                if (quantity <= 0){ // Outputs if quantity is less than or equal to 0
+                if (quantity <= 0){ //Outputs if quantity is less than or equal to 0
                     System.out.println("Must be at least 1 quantity. Try Again.");
                 }
-                else{ // Quantity is valid
+                else{ //Quantity is valid
                     isValid = true;
                 }
             }
-            else{ // Outputs if the user's input doesn't match an integer value
+            else{ //Outputs if the user's input doesn't match an integer value
                 System.out.println("Invalid input. Try again.");
             }
         }
 
-        // Initialization of boxed product and adding it to the inventory
-        BoxedProduct prod = new BoxedProduct(brand, items);
-        if(quantity > 1) {
-            inventory.add(prod, quantity);
+        //Instantiation of boxed product and adding it to the inventory
+        if (!inventory.isArrayFull(inventory.boxes)) { //Adds item if the inventory has space
+            BoxedProduct prod = new BoxedProduct(brand, items);
+            if (quantity > 1) {
+                inventory.add(prod, quantity);
+            } else {
+                inventory.add(prod);
+            }
         }
-        else{
-            inventory.add(prod);
+        else{ //Outputs if the inventory has no more space
+            System.out.println("Unable to add more boxed products as the system can only hold 1000 boxed items.");
         }
     }
 
@@ -241,8 +249,8 @@ public class Main {
     }
 
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in); //Initialize scanner for user input
-        InventoryManager inventory = new InventoryManager(); //Initialize inventory manager to store products
+        Scanner sc = new Scanner(System.in); //Instantiate scanner for user input
+        InventoryManager inventory = new InventoryManager(); //Instantiate inventory manager to store products
 
         System.out.println("== INVENTORY SYSTEM ==");
         // Start the main program loop to manage inventory
