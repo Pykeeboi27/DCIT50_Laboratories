@@ -22,18 +22,19 @@ public class ExpressionTester {
         expectEquals("y", v2.getName());
         expectEquals("y", v2.toString());
         expectNull(v2.getValue());
-//
-//        System.out.println("\nTest Non-Null Negation");
-//        Negation n1 = new Negation(c1);
-//        expectSame(c1, n1.getOperand());
-//        expectEquals(-3, n1.getValue());
-//        expectEquals("-3", n1.toString());
-//
-//        System.out.println("\nTest Null Negation");
-//        Negation n2 = new Negation(v2);
-//        expectSame(v2, n2.getOperand());
-//        expectEquals("-y", n2.toString());
-//        expectNull(n2.getValue());
+
+        System.out.println("\nTest Non-Null Negation");
+        Negation n1 = new Negation(c1);
+        expectSame(c1, n1.getOperand());
+        expectEquals(-3, n1.getValue());
+        expectEquals("-3", n1.toString());
+
+        System.out.println("\nTest Null Negation");
+        Negation n2 = new Negation(v2);
+        expectSame(v2, n2.getOperand());
+        expectEquals("-y", n2.toString());
+        expectNull(n2.getValue());
+
 //
 //        System.out.println("\nTest Non-Null Addition");
 //        Addition a1 = new Addition(c1, n1);
