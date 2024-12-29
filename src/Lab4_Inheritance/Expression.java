@@ -1,6 +1,6 @@
 package Lab4_Inheritance;
 
-abstract public class Expression {
+public abstract class Expression {
 
     int value;
 
