@@ -3,10 +3,6 @@
 //* package edu.cvsu.dcit50.expression;//*
 //**/
 //
-///**
-// *
-// * @author rlvillacarlos
-
 //public class ExpressionTester {
 //
 //    public static void main(String[] args) {
