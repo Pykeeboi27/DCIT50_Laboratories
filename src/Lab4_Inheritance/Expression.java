@@ -2,7 +2,7 @@ package Lab4_Inheritance;
 
 public abstract class Expression {
 
-    int value;
+    Integer value;
 
     abstract Integer getValue();
     abstract public String toString();

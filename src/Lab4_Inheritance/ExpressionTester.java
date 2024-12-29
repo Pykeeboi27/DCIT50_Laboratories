@@ -9,19 +9,19 @@ public class ExpressionTester {
         expectEquals(3, c1.getValue());
         expectEquals("3", c1.toString());
 
-//        System.out.println("\nTest Non-Null Variable");
-//        Variable v1 = new Variable("x", 5);
-//        expectEquals("x", v1.getName());
-//        expectEquals("x", v1.toString());
-//        expectEquals(5, v1.getValue());
-//        v1.setValue(10);
-//        expectEquals(10, v1.getValue());
-//
-//        System.out.println("\nTest Null Variable");
-//        Variable v2 = new Variable("y");
-//        expectEquals("y", v2.getName());
-//        expectEquals("y", v2.toString());
-//        expectNull(v2.getValue());
+        System.out.println("\nTest Non-Null Variable");
+        Variable v1 = new Variable("x", 5);
+        expectEquals("x", v1.getName());
+        expectEquals("x", v1.toString());
+        expectEquals(5, v1.getValue());
+        v1.setValue(10);
+        expectEquals(10, v1.getValue());
+
+        System.out.println("\nTest Null Variable");
+        Variable v2 = new Variable("y");
+        expectEquals("y", v2.getName());
+        expectEquals("y", v2.toString());
+        expectNull(v2.getValue());
 //
 //        System.out.println("\nTest Non-Null Negation");
 //        Negation n1 = new Negation(c1);
