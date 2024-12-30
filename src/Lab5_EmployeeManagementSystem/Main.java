@@ -76,8 +76,8 @@ public class Main {
         String name = sc.nextLine();
 
         while (!nameIsUnique(name, Employees)){
-            System.out.println("Error: Name is already associated with an employee. Try again.");
-            System.out.print("Enter Employee ID: ");
+            System.out.println("Error: Person is already an employee. Try again.");
+            System.out.print("Enter Employee Name: ");
             name = sc.nextLine();
         }
         employee.setName(name);
