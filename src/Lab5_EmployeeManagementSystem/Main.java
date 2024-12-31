@@ -124,7 +124,7 @@ public class Main {
                 else if(choice == 2){
                     displayEmployees(Employees);
                 }
-                else if(choice == 3){
+                else {
                     System.out.println("Exiting Program.");
                     break;
                 }
