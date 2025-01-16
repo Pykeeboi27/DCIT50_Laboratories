@@ -44,7 +44,19 @@ public class Main {
                 System.out.println("Name    : " + animal.getName());
                 System.out.println("Species : " + animal.getSpecies());
                 System.out.println("Age     : " + animal.getAge());
-                System.out.println("=====================================");
+                System.out.println("=======================================");
+            }
+        }
+    }
+
+    public static void showAnimalSounds(ArrayList<Animal> animals){
+        if (animals.isEmpty()){
+            System.out.println("\nNo animals in the zoo to make a sound.");
+        }
+        else{
+            System.out.println("\n========== Animals in the Zoo =========");
+            for (Animal animal: animals){
+                animal.makeSound();
             }
         }
     }
@@ -68,7 +80,7 @@ public class Main {
                 showAnimals(animals);
             }
             else if (action == 3){
-                System.out.println("This is 3.");
+                showAnimalSounds(animals);
             }
             else{
                 System.out.println("\nExiting program...");
