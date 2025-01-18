@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 
 public class Main {
 
-    public static void showMenu(){
+    private static void showMenu(){
         System.out.println("\n=== Zoo Management System ===");
         System.out.println("1. Add Animal");
         System.out.println("2. View All Animal");
@@ -14,7 +14,7 @@ public class Main {
         System.out.println("4. Exit");
     }
 
-    public static int menuChoice(Scanner sc){
+    private static int menuChoice(Scanner sc){
 
         int choice;
 
@@ -34,7 +34,7 @@ public class Main {
         return choice;
     }
 
-    public static void showAnimals(ArrayList<Animal> animals){
+    private static void showAnimals(ArrayList<Animal> animals){
         if (animals.isEmpty()){
             System.out.println("\nNo animals to show.");
         }
@@ -49,7 +49,7 @@ public class Main {
         }
     }
 
-    public static void showAnimalSounds(ArrayList<Animal> animals){
+    private static void showAnimalSounds(ArrayList<Animal> animals){
         if (animals.isEmpty()){
             System.out.println("\nNo animals in the zoo to make a sound.");
         }
@@ -59,6 +59,32 @@ public class Main {
                 animal.makeSound();
             }
         }
+    }
+
+    private static void addAnimal(Scanner sc, ArrayList<Animal> animals){
+
+        sc.nextLine();
+
+        System.out.println("\n========== Add an Animal ==========");
+        String name = getValidName(sc);
+    }
+
+    private static String getValidName(Scanner sc){
+        String name;
+
+        while(true){
+            System.out.print("Enter animal's name: ");
+            name = sc.nextLine().trim();
+
+            if (name.isEmpty()){
+                System.out.println("Error: Name cannot be empty. Try again.");
+            }
+            else if (name.matches(".*\\d.*")){
+                System.out.println("Error: Name cannot include any numbers. Try again.");
+            }
+            else{break;}
+        }
+        return name;
     }
 
     public static void mainProgram(Scanner sc, ArrayList<Animal> animals){
@@ -74,7 +100,7 @@ public class Main {
                 action = menuChoice(sc);
             }
             if (action == 1){
-                System.out.println("This is 1.");
+                addAnimal(sc, animals);
             }
             else if (action == 2){
                 showAnimals(animals);
