@@ -67,6 +67,14 @@ public class Main {
 
         System.out.println("\n========== Add an Animal ==========");
         String name = getValidName(sc);
+        String species = getValidSpecies(sc);
+        int age = getValidAge(sc);
+
+        Animal a = new Animal(name, species, age);
+        animals.add(a);
+        System.out.println("Animal successfully added!");
+
+
     }
 
     private static String getValidName(Scanner sc){
@@ -87,7 +95,58 @@ public class Main {
         return name;
     }
 
-    public static void mainProgram(Scanner sc, ArrayList<Animal> animals){
+    private static String getValidSpecies(Scanner sc){
+        String species;
+
+        while(true){
+            System.out.print("Enter animal's species: ");
+            species = sc.nextLine().trim();
+
+            if (species.isEmpty()){
+                System.out.println("Error: Species cannot be empty. Try again.");
+            }
+            else if (species.matches(".*\\d.*")){
+                System.out.println("Error: Species cannot include any numbers. Try again.");
+            }
+            else{break;}
+        }
+        return species;
+    }
+
+    private static int getValidAge(Scanner sc){
+        int age;
+
+        while (true){
+            try {
+                System.out.print("Enter animal's age: ");
+                age = sc.nextInt();
+
+                if (age < 0){
+                    System.out.println("Error: Please enter an age that 0 and above.");
+                }
+                else {
+                    break;
+                }
+            }
+            catch(InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Error: Please enter a numerical name. Try again.");
+            }
+        }
+
+        return age;
+    }
+
+    private static boolean canStillStore(ArrayList<Animal> animals){
+        for (int i = 0; i < animals.size(); i++){
+            if (i == 4){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static void mainProgram(Scanner sc, ArrayList<Animal> animals){
 
         boolean programIsRunning = true;
 
@@ -100,7 +159,12 @@ public class Main {
                 action = menuChoice(sc);
             }
             if (action == 1){
-                addAnimal(sc, animals);
+                if (canStillStore(animals)) {
+                    addAnimal(sc, animals);
+                }
+                else{
+                    System.out.println("Sorry! Our zoo is already full and can only store 5 animals. Cannot add any more.");
+                }
             }
             else if (action == 2){
                 showAnimals(animals);
@@ -124,10 +188,12 @@ public class Main {
         Animal b = new Animal("Michael", "Cat", 10);
         Animal c = new Animal("Lourence","Dinosaur", 1017);
 
+
         animals.add(a);
         animals.add(b);
         animals.add(c);
 
+        System.out.println(canStillStore(animals));
         mainProgram(sc, animals);
 
 
