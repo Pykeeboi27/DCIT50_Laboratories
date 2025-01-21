@@ -134,9 +134,10 @@ public class Main {
                 System.out.print("Enter animal's age: ");
                 age = sc.nextInt();
 
-                if (age < 0){
-                    System.out.println("Error: Please enter an age that 0 and above.");
+                if (age <= 0) {
+                    System.out.println("Error: Please enter an age greater than 0.");
                 }
+
                 else {
                     break;
                 }
@@ -199,28 +200,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         ArrayList<Animal> animals = new ArrayList<Animal>();
 
-        Animal a = new Animal();
-        a.setName("Jiroh");
-        a.setSpecies("Dog");
-        a.setAge(24);
-
-        Animal b = new Animal();
-        b.setName("Michael");
-        b.setSpecies("Cat");
-        b.setAge(10);
-
-        Animal c = new Animal();
-        b.setName("Lourence");
-        b.setSpecies("Dinosaur");
-        b.setAge(1017);
-
-        animals.add(a);
-        animals.add(b);
-        animals.add(c);
-
-        System.out.println(canStillStore(animals));
         mainProgram(sc, animals);
-
-
     }
 }
