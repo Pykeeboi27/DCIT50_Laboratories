@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 
 public class Main {
 
+    //Shows the menu of actions available in the program
     private static void showMenu(){
         System.out.println("\n=== Zoo Management System ===");
         System.out.println("1. Add Animal");
@@ -14,6 +15,7 @@ public class Main {
         System.out.println("4. Exit");
     }
 
+    //Asks for the user's action in the program
     private static int menuChoice(Scanner sc){
 
         int choice;
@@ -34,6 +36,7 @@ public class Main {
         return choice;
     }
 
+    //Method that shows all the animals in the system
     private static void showAnimals(ArrayList<Animal> animals){
         if (animals.isEmpty()){
             System.out.println("\nNo animals to show.");
@@ -49,6 +52,7 @@ public class Main {
         }
     }
 
+    //Method that shows all the sounds that the animals make in the system
     private static void showAnimalSounds(ArrayList<Animal> animals){
         if (animals.isEmpty()){
             System.out.println("\nNo animals in the zoo to make a sound.");
@@ -61,22 +65,29 @@ public class Main {
         }
     }
 
+    //Method that adds an animal in the system
     private static void addAnimal(Scanner sc, ArrayList<Animal> animals){
 
         sc.nextLine();
+
+        Animal a = new Animal();
 
         System.out.println("\n========== Add an Animal ==========");
         String name = getValidName(sc);
         String species = getValidSpecies(sc);
         int age = getValidAge(sc);
 
-        Animal a = new Animal(name, species, age);
+        a.setName(name);
+        a.setSpecies(species);
+        a.setAge(age);
         animals.add(a);
+
         System.out.println("Animal successfully added!");
 
 
     }
 
+    //Method inside addAnimal() that asks for the animal's valid name
     private static String getValidName(Scanner sc){
         String name;
 
@@ -95,6 +106,7 @@ public class Main {
         return name;
     }
 
+    //Method inside addAnimal() that asks for the animal's valid species name
     private static String getValidSpecies(Scanner sc){
         String species;
 
@@ -113,6 +125,7 @@ public class Main {
         return species;
     }
 
+    //Method inside addAnimal() that asks for the animal's valid age
     private static int getValidAge(Scanner sc){
         int age;
 
@@ -137,6 +150,7 @@ public class Main {
         return age;
     }
 
+    //Method that checks whether there the program can still add an animal in the system
     private static boolean canStillStore(ArrayList<Animal> animals){
         for (int i = 0; i < animals.size(); i++){
             if (i == 4){
@@ -146,6 +160,7 @@ public class Main {
         return true;
     }
 
+    //The main program that combines all the methods
     private static void mainProgram(Scanner sc, ArrayList<Animal> animals){
 
         boolean programIsRunning = true;
@@ -184,10 +199,20 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         ArrayList<Animal> animals = new ArrayList<Animal>();
 
-        Animal a = new Animal("Jiroh", "Dog", 24);
-        Animal b = new Animal("Michael", "Cat", 10);
-        Animal c = new Animal("Lourence","Dinosaur", 1017);
+        Animal a = new Animal();
+        a.setName("Jiroh");
+        a.setSpecies("Dog");
+        a.setAge(24);
 
+        Animal b = new Animal();
+        b.setName("Michael");
+        b.setSpecies("Cat");
+        b.setAge(10);
+
+        Animal c = new Animal();
+        b.setName("Lourence");
+        b.setSpecies("Dinosaur");
+        b.setAge(1017);
 
         animals.add(a);
         animals.add(b);

@@ -6,13 +6,6 @@ public class Animal {
     private String species;
     private int age;
 
-    //Constructor
-    Animal (String name, String species, int age){
-        this.name = name;
-        this.species = species;
-        this.age = age;
-    }
-
     public void makeSound(){
         System.out.println(name + " the animal makes a generic sound!");
     }
